@@ -4,7 +4,7 @@
 
 ## Overview
 
-Coffee Finder is an iOS application designed to help users locate nearby Starbucks, Dutch Bros, and Dunkin' coffee shops. Inspired by the convenience of apps like OctaneBuddy, Coffee Finder aims to provide a clean, intuitive interface for discovering your next caffeine fix, complete with distance filtering, map views, and personalized preferences.
+Coffee Finder is an iOS application designed to help users locate nearby Starbucks, Dutch Bros, and Dunkin' coffee shops. Coffee Finder aims to provide a clean, intuitive interface for discovering your next caffeine fix, complete with distance filtering, map views, and personalized preferences.
 
 This project is currently under active development using Swift and SwiftUI.
 
