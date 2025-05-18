@@ -6,43 +6,51 @@
 //
 // CoffeeFinder/Features/MainView/ContentView.swift
 
+// CoffeeFinder/Features/MainView/ContentView.swift
+
 import SwiftUI
 import CoreLocation
+import MapKit 
 
 struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
     @StateObject private var coffeeShopProvider = CoffeeShopProvider()
 
     @State private var selectedBrands: [CoffeeBrand] = CoffeeBrand.allCases
-    @State private var selectedDistance: CLLocationDistance = 16093.4
+    @State private var selectedDistance: CLLocationDistance = 16093.4 // 10 miles
 
     let distanceOptions: [String: CLLocationDistance] = [
-        "1 mile": 1609.34,
-        "3 miles": 4828.03,
-        "5 miles": 8046.72,
-        "10 miles": 16093.4,
-        "20 miles": 32186.9
+        "1 mile": 1609.34, "3 miles": 4828.03, "5 miles": 8046.72,
+        "10 miles": 16093.4, "20 miles": 32186.9
     ]
     var sortedDistanceKeys: [String] {
-        distanceOptions.keys.sorted {
-            distanceOptions[$0]! < distanceOptions[$1]!
-        }
+        distanceOptions.keys.sorted { distanceOptions[$0]! < distanceOptions[$1]! }
     }
     private var selectedDistanceKey: String {
         distanceOptions.first(where: { $0.value == selectedDistance })?.key ?? "10 miles"
     }
 
+    // Computed property for filtered shops to pass to MapView and List
+    private var filteredShops: [CoffeeShop] {
+        coffeeShopProvider.getShops(
+            filteredBy: selectedBrands,
+            near: locationManager.userLocation,
+            within: selectedDistance
+        )
+    }
+
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 0) { // Use spacing 0 if map and list are directly adjacent
                 if locationManager.authorizationStatus == .notDetermined {
                     InitialPermissionRequestView(locationManager: locationManager)
                 } else if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
                     LocationPermissionDeniedView()
                 } else if locationManager.userLocation == nil && (locationManager.authorizationStatus == .authorizedWhenInUse || locationManager.authorizationStatus == .authorizedAlways) {
-                    Text("Acquiring location...")
-                        .padding()
-                    ProgressView()
+                    VStack {
+                        Text("Acquiring location...").padding()
+                        ProgressView()
+                    }.frame(maxHeight: .infinity)
                 } else {
                     FilterControlsView(
                         selectedBrands: $selectedBrands,
@@ -55,19 +63,18 @@ struct ContentView: View {
                         distanceOptions: distanceOptions
                     )
 
-                    List {
-                        let shops = coffeeShopProvider.getShops(
-                            filteredBy: selectedBrands,
-                            near: locationManager.userLocation,
-                            within: selectedDistance
-                        )
+                    // Map View
+                    MapView(shops: .constant(filteredShops), userLocation: $locationManager.userLocation)
+                        .frame(height: UIScreen.main.bounds.height / 2.5) // Give map a significant portion of height
+                        .edgesIgnoringSafeArea(.horizontal) // Allow map to extend to screen edges horizontally
 
-                        if shops.isEmpty {
+                    // List of coffee shops
+                    List {
+                        if filteredShops.isEmpty {
                             Text("No coffee shops found matching your criteria.")
-                                .foregroundColor(.secondary)
-                                .padding()
+                                .foregroundColor(.secondary).padding()
                         } else {
-                            ForEach(shops) { shop in
+                            ForEach(filteredShops) { shop in
                                 CoffeeShopRow(shop: shop, userLocation: locationManager.userLocation)
                             }
                         }
@@ -89,7 +96,6 @@ struct ContentView: View {
 
 struct InitialPermissionRequestView: View {
     @ObservedObject var locationManager: LocationManager
-
     var body: some View {
         VStack {
             Image(systemName: "location.circle.fill")
@@ -98,11 +104,9 @@ struct InitialPermissionRequestView: View {
             Text("Location Access Needed").font(.title2).padding(.bottom, 5)
             Text("To find coffee shops near you, please allow CoffeeFinder to access your location.")
                 .multilineTextAlignment(.center).padding(.horizontal)
-            Button("Allow Location Access") {
-                locationManager.requestLocationPermission()
-            }
+            Button("Allow Location Access") { locationManager.requestLocationPermission() }
             .padding().buttonStyle(.borderedProminent)
-        }
+        }.frame(maxHeight: .infinity)
     }
 }
 
@@ -119,7 +123,7 @@ struct LocationPermissionDeniedView: View {
                 Button("Open Settings") { UIApplication.shared.open(url) }
                 .padding().buttonStyle(.bordered)
             }
-        }
+        }.frame(maxHeight: .infinity)
     }
 }
 
@@ -147,9 +151,9 @@ struct FilterControlsView: View {
                         }) {
                             Text(brand.rawValue)
                                 .padding(.horizontal, 12).padding(.vertical, 8)
-                                .background(selectedBrands.contains(brand) ? Color.blue : Color.gray.opacity(0.3))
+                                .background(selectedBrands.contains(brand) ? Color.blue.opacity(0.8) : Color.gray.opacity(0.2))
                                 .foregroundColor(selectedBrands.contains(brand) ? .white : .primary)
-                                .cornerRadius(8)
+                                .cornerRadius(8).shadow(radius: selectedBrands.contains(brand) ? 3 : 0)
                         }
                     }
                 }
@@ -164,11 +168,14 @@ struct FilterControlsView: View {
                     }
                 }
                 .pickerStyle(MenuPickerStyle())
+                .padding(.trailing, 5)
+                .tint(.blue)
             }
             .padding(.horizontal)
             .padding(.top, 5)
         }
         .padding(.vertical, 10)
+        .background(Color(.systemGray6).edgesIgnoringSafeArea(.horizontal))
     }
 }
 
@@ -180,26 +187,26 @@ struct CoffeeShopRow: View {
         guard let userLocation = userLocation else { return "" }
         let distanceInMeters = userLocation.distance(from: shopLocation)
         let distanceInMiles = distanceInMeters / 1609.34
-        return String(format: "%.2f mi", distanceInMiles)
+        return String(format: "%.1f mi", distanceInMiles)
     }
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(shop.name).font(.headline)
-                Text(shop.brand.rawValue).font(.subheadline).foregroundColor(.secondary)
+                Text(shop.brand.rawValue).font(.subheadline).foregroundColor(shop.brand.markerColor)
                 if let address = shop.address, !address.isEmpty {
                     Text(address).font(.caption).foregroundColor(.gray)
                 }
             }
             Spacer()
-            if let location = userLocation {
+            if userLocation != nil {
                 let shopCLLocation = CLLocation(latitude: shop.latitude, longitude: shop.longitude)
-                Text(distanceString(from: location, to: shopCLLocation))
+                Text(distanceString(from: userLocation, to: shopCLLocation))
                     .font(.subheadline).foregroundColor(.blue)
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 6)
     }
 }
 

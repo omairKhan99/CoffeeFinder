@@ -7,33 +7,31 @@
 
 // CoffeeFinder/Core/Data/CoffeeShop.swift
 
-import Foundation
-import CoreLocation // We'll need this for coordinates
+// CoffeeFinder/Core/Data/CoffeeShop.swift
 
-// Enum to represent the supported coffee shop brands
-enum CoffeeBrand: String, CaseIterable, Identifiable, Codable {
+import Foundation
+import CoreLocation
+
+enum CoffeeBrand: String, CaseIterable, Identifiable, Codable, Equatable { // Added Equatable
     case starbucks = "Starbucks"
     case dutchBros = "Dutch Bros"
     case dunkin = "Dunkin'"
 
-    var id: String { self.rawValue } // For Identifiable conformance
+    var id: String { self.rawValue }
 }
 
-// Struct to represent a coffee shop
-struct CoffeeShop: Identifiable, Codable {
-    let id: UUID // Unique identifier for each coffee shop
+struct CoffeeShop: Identifiable, Codable, Equatable { // Added Equatable
+    let id: UUID
     let name: String
     let brand: CoffeeBrand
     let latitude: Double
     let longitude: Double
-    var address: String? // Optional address details
+    var address: String?
 
-    // Computed property for CLLocationCoordinate2D, useful for MapKit
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
-    // Example initializer
     init(id: UUID = UUID(), name: String, brand: CoffeeBrand, latitude: Double, longitude: Double, address: String? = nil) {
         self.id = id
         self.name = name
@@ -42,10 +40,20 @@ struct CoffeeShop: Identifiable, Codable {
         self.longitude = longitude
         self.address = address
     }
+
+    // Equatable conformance can be synthesized by the compiler
+    // because all its stored properties (UUID, String, CoffeeBrand, Double, Optional<String>)
+    // are Equatable.
+    // static func == (lhs: CoffeeShop, rhs: CoffeeShop) -> Bool {
+    //     return lhs.id == rhs.id &&
+    //            lhs.name == rhs.name &&
+    //            lhs.brand == rhs.brand &&
+    //            lhs.latitude == rhs.latitude &&
+    //            lhs.longitude == rhs.longitude &&
+    //            lhs.address == rhs.address
+    // }
 }
 
-// Sample Data (We'll move this to CoffeeShopProvider later)
-// For now, you can include it here to test, or wait until we create CoffeeShopProvider.swift
 extension CoffeeShop {
     static let sampleShops: [CoffeeShop] = [
         CoffeeShop(name: "Starbucks - Main St", brand: .starbucks, latitude: 34.052235, longitude: -118.243683, address: "123 Main St, Los Angeles, CA"),
@@ -55,4 +63,5 @@ extension CoffeeShop {
         CoffeeShop(name: "Dutch Bros - Northside", brand: .dutchBros, latitude: 33.684566, longitude: -117.826508, address: "202 North St, Irvine, CA")
     ]
 }
+
 

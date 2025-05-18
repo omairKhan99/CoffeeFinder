@@ -17,6 +17,7 @@
 		498376452DD99080005CA1A4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376442DD99080005CA1A4 /* ContentView.swift */; };
 		498376472DD9909E005CA1A4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376462DD9909E005CA1A4 /* LocationManager.swift */; };
 		4983764A2DD991DA005CA1A4 /* CoffeeShopProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376492DD991DA005CA1A4 /* CoffeeShopProvider.swift */; };
+		49AB4AF62DD995B200F5CE03 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AB4AF52DD995B200F5CE03 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		498376462DD9909E005CA1A4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		498376482DD99137005CA1A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		498376492DD991DA005CA1A4 /* CoffeeShopProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopProvider.swift; sourceTree = "<group>"; };
+		49AB4AF52DD995B200F5CE03 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				498376442DD99080005CA1A4 /* ContentView.swift */,
+				49AB4AF52DD995B200F5CE03 /* MapView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4983764A2DD991DA005CA1A4 /* CoffeeShopProvider.swift in Sources */,
+				49AB4AF62DD995B200F5CE03 /* MapView.swift in Sources */,
 				498376402DD98FAE005CA1A4 /* CoffeeShop.swift in Sources */,
 				498376472DD9909E005CA1A4 /* LocationManager.swift in Sources */,
 				498376452DD99080005CA1A4 /* ContentView.swift in Sources */,
