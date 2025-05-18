@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		498376112DD98D89005CA1A4 /* CoffeeFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376102DD98D89005CA1A4 /* CoffeeFinderApp.swift */; };
-		498376132DD98D89005CA1A4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376122DD98D89005CA1A4 /* ContentView.swift */; };
 		498376152DD98D8E005CA1A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498376142DD98D8E005CA1A4 /* Assets.xcassets */; };
 		498376182DD98D8E005CA1A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 498376172DD98D8E005CA1A4 /* Preview Assets.xcassets */; };
 		498376222DD98D8E005CA1A4 /* CoffeeFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376212DD98D8E005CA1A4 /* CoffeeFinderTests.swift */; };
@@ -17,6 +16,7 @@
 		498376402DD98FAE005CA1A4 /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983763F2DD98FAE005CA1A4 /* CoffeeShop.swift */; };
 		498376452DD99080005CA1A4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376442DD99080005CA1A4 /* ContentView.swift */; };
 		498376472DD9909E005CA1A4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376462DD9909E005CA1A4 /* LocationManager.swift */; };
+		4983764A2DD991DA005CA1A4 /* CoffeeShopProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376492DD991DA005CA1A4 /* CoffeeShopProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 /* Begin PBXFileReference section */
 		4983760D2DD98D89005CA1A4 /* CoffeeFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		498376102DD98D89005CA1A4 /* CoffeeFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeFinderApp.swift; sourceTree = "<group>"; };
-		498376122DD98D89005CA1A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		498376142DD98D8E005CA1A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		498376172DD98D8E005CA1A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4983761D2DD98D8E005CA1A4 /* CoffeeFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoffeeFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +49,8 @@
 		4983763F2DD98FAE005CA1A4 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
 		498376442DD99080005CA1A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		498376462DD9909E005CA1A4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		498376482DD99137005CA1A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		498376492DD991DA005CA1A4 /* CoffeeShopProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +104,8 @@
 		4983760F2DD98D89005CA1A4 /* CoffeeFinder */ = {
 			isa = PBXGroup;
 			children = (
+				498376482DD99137005CA1A4 /* Info.plist */,
 				498376102DD98D89005CA1A4 /* CoffeeFinderApp.swift */,
-				498376122DD98D89005CA1A4 /* ContentView.swift */,
 				498376142DD98D8E005CA1A4 /* Assets.xcassets */,
 				498376162DD98D8E005CA1A4 /* Preview Content */,
 			);
@@ -165,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				4983763F2DD98FAE005CA1A4 /* CoffeeShop.swift */,
+				498376492DD991DA005CA1A4 /* CoffeeShopProvider.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -322,8 +324,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4983764A2DD991DA005CA1A4 /* CoffeeShopProvider.swift in Sources */,
 				498376402DD98FAE005CA1A4 /* CoffeeShop.swift in Sources */,
-				498376132DD98D89005CA1A4 /* ContentView.swift in Sources */,
 				498376472DD9909E005CA1A4 /* LocationManager.swift in Sources */,
 				498376452DD99080005CA1A4 /* ContentView.swift in Sources */,
 				498376112DD98D89005CA1A4 /* CoffeeFinderApp.swift in Sources */,
@@ -493,6 +495,7 @@
 				DEVELOPMENT_TEAM = KH982VV2LW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CoffeeFinder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -522,6 +525,7 @@
 				DEVELOPMENT_TEAM = KH982VV2LW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CoffeeFinder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
