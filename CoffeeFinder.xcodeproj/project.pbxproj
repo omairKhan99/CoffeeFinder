@@ -18,6 +18,8 @@
 		498376472DD9909E005CA1A4 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376462DD9909E005CA1A4 /* LocationManager.swift */; };
 		4983764A2DD991DA005CA1A4 /* CoffeeShopProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498376492DD991DA005CA1A4 /* CoffeeShopProvider.swift */; };
 		49AB4AF62DD995B200F5CE03 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AB4AF52DD995B200F5CE03 /* MapView.swift */; };
+		49AB4AF92DD99AE300F5CE03 /* CoffeeShopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AB4AF82DD99AE300F5CE03 /* CoffeeShopDetailView.swift */; };
+		49AB4AFB2DD9A01800F5CE03 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AB4AFA2DD9A01800F5CE03 /* ColorSchemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +52,11 @@
 		4983763F2DD98FAE005CA1A4 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
 		498376442DD99080005CA1A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		498376462DD9909E005CA1A4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		498376482DD99137005CA1A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		498376482DD99137005CA1A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		498376492DD991DA005CA1A4 /* CoffeeShopProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopProvider.swift; sourceTree = "<group>"; };
 		49AB4AF52DD995B200F5CE03 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		49AB4AF82DD99AE300F5CE03 /* CoffeeShopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopDetailView.swift; sourceTree = "<group>"; };
+		49AB4AFA2DD9A01800F5CE03 /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 		498376412DD9904F005CA1A4 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				49AB4AF72DD99ABE00F5CE03 /* CoffeeShopDetailView */,
 				498376422DD9904F005CA1A4 /* MainView */,
 			);
 			path = Features;
@@ -193,8 +198,17 @@
 		498376432DD9905D005CA1A4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				49AB4AFA2DD9A01800F5CE03 /* ColorSchemeManager.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		49AB4AF72DD99ABE00F5CE03 /* CoffeeShopDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				49AB4AF82DD99AE300F5CE03 /* CoffeeShopDetailView.swift */,
+			);
+			path = CoffeeShopDetailView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +342,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4983764A2DD991DA005CA1A4 /* CoffeeShopProvider.swift in Sources */,
+				49AB4AF92DD99AE300F5CE03 /* CoffeeShopDetailView.swift in Sources */,
+				49AB4AFB2DD9A01800F5CE03 /* ColorSchemeManager.swift in Sources */,
 				49AB4AF62DD995B200F5CE03 /* MapView.swift in Sources */,
 				498376402DD98FAE005CA1A4 /* CoffeeShop.swift in Sources */,
 				498376472DD9909E005CA1A4 /* LocationManager.swift in Sources */,

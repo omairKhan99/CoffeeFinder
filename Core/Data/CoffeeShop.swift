@@ -7,20 +7,41 @@
 
 // CoffeeFinder/Core/Data/CoffeeShop.swift
 
-// CoffeeFinder/Core/Data/CoffeeShop.swift
-
 import Foundation
 import CoreLocation
+import SwiftUI // Added for Color and Image
 
-enum CoffeeBrand: String, CaseIterable, Identifiable, Codable, Equatable { // Added Equatable
+enum CoffeeBrand: String, CaseIterable, Identifiable, Codable, Equatable {
     case starbucks = "Starbucks"
     case dutchBros = "Dutch Bros"
     case dunkin = "Dunkin'"
 
     var id: String { self.rawValue }
+
+    var markerColor: Color {
+        switch self {
+        case .starbucks:
+            return Color(red: 0.0, green: 0.4, blue: 0.2)
+        case .dutchBros:
+            return Color.blue
+        case .dunkin:
+            return Color.orange
+        }
+    }
+
+    var sfSymbolName: String {
+        switch self {
+        case .starbucks:
+            return "cup.and.saucer.fill"
+        case .dutchBros:
+            return "wind"
+        case .dunkin:
+            return "mug.fill"
+        }
+    }
 }
 
-struct CoffeeShop: Identifiable, Codable, Equatable { // Added Equatable
+struct CoffeeShop: Identifiable, Codable, Equatable {
     let id: UUID
     let name: String
     let brand: CoffeeBrand
@@ -40,19 +61,24 @@ struct CoffeeShop: Identifiable, Codable, Equatable { // Added Equatable
         self.longitude = longitude
         self.address = address
     }
-
-    // Equatable conformance can be synthesized by the compiler
-    // because all its stored properties (UUID, String, CoffeeBrand, Double, Optional<String>)
-    // are Equatable.
-    // static func == (lhs: CoffeeShop, rhs: CoffeeShop) -> Bool {
-    //     return lhs.id == rhs.id &&
-    //            lhs.name == rhs.name &&
-    //            lhs.brand == rhs.brand &&
-    //            lhs.latitude == rhs.latitude &&
-    //            lhs.longitude == rhs.longitude &&
-    //            lhs.address == rhs.address
-    // }
 }
+
+// Definition for ShopAnnotationItem, used by map views
+struct ShopAnnotationItem: Identifiable {
+    let id: UUID             // To conform to Identifiable for Map
+    let name: String           // Shop name, potentially for tap actions
+    let coordinate: CLLocationCoordinate2D
+    let brand: CoffeeBrand     // To use for styling the marker
+
+    // Initialize from a CoffeeShop
+    init(shop: CoffeeShop) {
+        self.id = shop.id
+        self.name = shop.name
+        self.coordinate = shop.coordinate
+        self.brand = shop.brand
+    }
+}
+
 
 extension CoffeeShop {
     static let sampleShops: [CoffeeShop] = [
@@ -63,5 +89,3 @@ extension CoffeeShop {
         CoffeeShop(name: "Dutch Bros - Northside", brand: .dutchBros, latitude: 33.684566, longitude: -117.826508, address: "202 North St, Irvine, CA")
     ]
 }
-
-
