@@ -59,7 +59,10 @@ Here's a rundown of the features currently available in Coffee Finder:
     * Structured data models for coffee shops and brands.
 * **Project Organization:** Clear and maintainable file and folder structure.
 
-<img width="393" alt="image" src="https://github.com/user-attachments/assets/1897ae82-1b69-4cc0-ac35-edfa441cf045" />
+###<img width="393" alt="image" src="https://github.com/user-attachments/assets/1897ae82-1b69-4cc0-ac35-edfa441cf045" /> 
+
+###<img width="405" alt="image" src="https://github.com/user-attachments/assets/98647e7e-31ae-4392-91c2-499c4571dba3" />
+
 
 
 
